@@ -1,0 +1,29 @@
+class Solution {
+    public String convert(String s, int numRows) {
+        if (numRows == 1 || numRows >= s.length())
+            return s;
+
+        StringBuilder ans = new StringBuilder();
+
+        int cycle = 2 * numRows - 2;
+
+        for (int row = 0; row < numRows; row++) {
+            for (int i = row; i < s.length(); i += cycle) {
+                ans.append(s.charAt(i));
+
+                int diagonal = i + cycle - 2 * row;
+
+                if (row != 0 && row != numRows - 1 && diagonal < s.length()) {
+                    ans.append(s.charAt(diagonal));
+                }
+            }
+        }
+
+        return ans.toString();
+    }
+}
+
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
